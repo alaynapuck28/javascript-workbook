@@ -6,7 +6,7 @@ const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
 });
-
+'use strict';
 
 function rockPaperScissors(hand1, hand2) {
 

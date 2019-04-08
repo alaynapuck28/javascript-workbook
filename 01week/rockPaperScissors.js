@@ -9,9 +9,28 @@ const rl = readline.createInterface({
 'use strict';
 
 function rockPaperScissors(hand1, hand2) {
-
-  // Write code here
-
+ if (hand1 == 'rock' && hand2=='scissors'){
+   return 'hand 1 wins';
+ } else if (hand1 == 'rock' && hand2=='paper'){
+   return 'hand 2 wins';
+ }
+ else if (hand1=='rock' && hand2=='rock'){
+   return 'no one wins!'; 
+ } else if (hand1 == 'paper' && hand2=='rock'){
+  return 'hand 1 wins';
+ }else if (hand1 == 'paper' && hand2=='scissors'){
+  return 'hand 2 wins';
+ }else if (hand1 == 'paper' && hand2=='paper'){
+  return 'no one wins';
+ }else if (hand1 == 'scissors' && hand2=='paper'){
+  return 'hand 1 wins';
+ }else if (hand1 == 'scissors' && hand2=='rock'){
+  return 'hand 2 wins';
+ }else if (hand1 == 'scissors' && hand2=='scissors'){
+  return 'no one wins';
+ } else {
+   return 'game now'
+ }
 }
 
 function getPrompt() {

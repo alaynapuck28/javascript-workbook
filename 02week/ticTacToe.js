@@ -44,7 +44,7 @@ function verticalWin() {
 
 function diagonalWin() {
   // Possible diagnol wins
-  let winByV = board[0][0];
+  let winByD = board[0][0];
   if ((board[0][0] == playerTurn && board[1][1] == playerTurn && board[2][2] == playerTurn) || (board[2][0] == playerTurn && board[1][1] == playerTurn && board[0][2] == playerTurn)) {
     return true;
   }

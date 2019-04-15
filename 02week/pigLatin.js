@@ -1,41 +1,26 @@
-"use strict";
+'use strict';
 
-const assert = require("assert");
-const readline = require("readline");
+const assert = require('assert');
+const readline = require('readline');
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
 });
 
 function pigLatin(word) {
-  // trim and get rid of whitespace
-  let betterWord = word.trim().toLowerCase();
-  console.log(betterWord);
+  word = word.trim().toLowerCase();
+  let vowels = /[aeiou]/;
+
+  if (word[0].match(vowels)){
+    return word + 'yay';
+  }
+
+  else {
+    let vowelIndice = word.indexOf(word.match(vowels)[0]);
+    word = word.trim().toLowerCase().substr(vowelIndice) + word.trim().toLowerCase().substr(0, vowelIndice);
+  }
+  return word + 'ay';
   
-  //turns string into array
-  let wordArray = betterWord.split("");
-  console.log(wordArray);
-
-  //turns moves first letter of array to end
-  wordArray.push(wordArray.shift());
-  console.log(wordArray);
-
-  //adds ay to end of array
-  wordArray.push("ay");
-  console.log(wordArray);
-
-//converts back to string
- let stringAgain= wordArray.join('');
-  console.log(stringAgain);
-}
-
-
-
-function getPrompt() {
-  rl.question("word ", answer => {
-    console.log(pigLatin(answer));
-    getPrompt();
-  });
 }
 
 // Tests

@@ -24,23 +24,67 @@ function printBoard() {
 }
 
 function horizontalWin() {
-  // Your code here
+  
+  // Possible horizontal wins
+  let winByH = board[0][0];
+  if ((board[0][0] == playerTurn && board[0][1] == playerTurn && board[0][2] == playerTurn) || (board[1][0] == playerTurn && board[1][1] == playerTurn && board[1][2] == playerTurn) || (board[0][0] == playerTurn && board[0][1] == playerTurn && board[0][2] == playerTurn)) {
+    return true;
+  }
+
 }
 
 function verticalWin() {
-  // Your code here
+// Possible vertical wins
+
+let winByV = board[0][0];
+if ((board[0][0] == playerTurn && board[1][0] == playerTurn && board[2][0] == playerTurn) || (board[0][1] == playerTurn && board[1][1] == playerTurn && board[2][1] == playerTurn) || (board[0][2] == playerTurn && board[1][2] == playerTurn && board[2][2] == playerTurn)) {
+  return true;
+}
 }
 
 function diagonalWin() {
-  // Your code here
+// Possible diagnol wins
+let winByD = board[0][0];
+if ((board[0][0] == playerTurn && board[1][1] == playerTurn && board[2][2] == playerTurn) || (board[2][0] == playerTurn && board[1][1] == playerTurn && board[0][2] == playerTurn)) {
+  return true;
 }
 
+}
+
+// Check for all winning options 
 function checkForWin() {
-  // Your code here
+  if (verticalWin()) {
+    return true;
+  } else if (horizontalWin()) {
+    return true;
+  } else if (diagonalWin()) {
+      return true;
+  }
+
 }
 
 function ticTacToe(row, column) {
-  // Your code here
+//update board based on row and column
+if (playerTurn=='X') {
+board[row][column]= playerTurn;
+playerTurn='O';
+}else if (playerTurn=='O'){
+board[row][column]= playerTurn;
+playerTurn='X'
+}
+}
+
+
+function getPrompt() {
+printBoard();
+console.log("It's Player " + playerTurn + "'s turn.");
+rl.question('row: ', (row) => {
+  rl.question('column: ', (column) => {
+    ticTacToe(row, column);
+    getPrompt();
+  });
+});
+
 }
 
 function getPrompt() {

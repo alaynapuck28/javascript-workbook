@@ -4,11 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="style.css">
     <title>Tic Tac Toe</title>
+    <link href="https://fonts.googleapis.com/css?family=Nunito:600" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<body>
+    <h1>Tic Tac Toe</h1>
+    <div id="message"></div>
+   <div class="message" id="winMessage"></div>
+</section>
+    <table class="tictactoe">
+        <tr>
+            <td class="boxes" id="b00" onClick="ticTacToe(0,0)"></td>
+            <td class="boxes" id="b01" onClick="ticTacToe(0,1)"></td>
+            <td class="boxes" id="b02" onClick="ticTacToe(0,2)"></td>
+        </tr>
+        <tr>
+            <td class="boxes" id="b10" onClick="ticTacToe(1,0)"></td>
+            <td class="boxes" id="b11" onClick="ticTacToe(1,1)"></td>
+            <td class="boxes" id="b12" onClick="ticTacToe(1,2)"></td>
+        </tr>
+        <tr>
+            <td class="boxes" id="b20" onClick="ticTacToe(2,0)"></td>
+            <td class="boxes" id="b21" onClick="ticTacToe(2,1)"></td>
+            <td class="boxes" id="b22" onClick="ticTacToe(2,2)"></td>
+        </tr>
+    </table>
+
+    <!-- not functional yet -->
+    <button id="reset" onclick="reloadFunction()">Reset</button>
     
-    <script src="ticTacToe.js"></script>
+ 
+
+<script src="ticTacToe.js"></script>
+
 </body>
 </html>
+
+
+ 

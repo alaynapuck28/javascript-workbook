@@ -8,7 +8,7 @@ const rl = readline.createInterface({
 });
 
 let board = [];
-let solution = '';
+let solution = 'abcd';
 let letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
 
 function printBoard() {
@@ -28,11 +28,36 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
-function generateHint() {
-  // your code here
+function generateHint(solution, guess) {
+ if (guess!=solution); 
+let solutionArray= solution.split("");
+let guessArray= guess.split("");
+let correctLetterLocations = 0;
+for (let i=0; i < guessArray.length; i++){
+if (solutionArray[i]== guessArray[i]){
+  correctLetterLocations+=1;
+  solutionArray[i]=null;
+}
+}
+let correctLetter = 0;
+for (let i=0; i < solutionArray.length; i++){
+let targetIndex = guessArray.indexOf([solutionArray[i]]);
+
+if (targetIndex>-1){
+  correctLetter+=1;
+  solutionArray[i]=null;
+}
 }
 
+
+}
+
+
 function mastermind(guess) {
+  if (guess== solution){
+    return 'You guessed it!';
+   ;
+  }
   solution = 'abcd'; // Comment this out to generate a random solution
   // your code here
 }

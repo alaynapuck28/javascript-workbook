@@ -19,10 +19,16 @@ function printStacks() {
   console.log("c: " + stacks.c);
 }
 
-function movePiece() {
-  // Your code here
+function movePiece(startStack, endStack) {
 
-}
+  const towerA = stacks.a;
+  const towerB = stacks.b;
+  const towerC = stacks.c;
+  if (towerA.length < 3 && towerB.length < 3 && towerC.length < 3); {
+  
+  stacks[endStack].push(stacks[startStack].splice(-1,1))
+}}
+
 
 function isLegal() {
   // Your code here
@@ -30,12 +36,12 @@ function isLegal() {
 }
 
 function checkForWin() {
-  // Your code here
+  if
 
 }
 
 function towersOfHanoi(startStack, endStack) {
-  // Your code here
+  movePiece(startStack, endStack);
 
 }
 

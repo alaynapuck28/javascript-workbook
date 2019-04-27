@@ -27,8 +27,7 @@ function movePiece(startStack, endStack) {
   if (towerA.length < 3 && towerB.length < 3 && towerC.length < 3); {
   
   stacks[endStack].push(stacks[startStack].splice(-1,1))
-}}
-
+}};
 
 function isLegal() {
   // Your code here
@@ -36,7 +35,7 @@ function isLegal() {
 }
 
 function checkForWin() {
-  if
+  
 
 }
 

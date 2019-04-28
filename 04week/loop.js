@@ -5,6 +5,8 @@ do {
   console.log(numbers);
 } while (numbers < 1000);
 
+
+//Use a for...in loop and if statement to console.log value associated with the key birthDate if the birth year is an odd number
 const person = {
   firstName: "Jane",
   lastName: "Doe",
@@ -15,10 +17,8 @@ const person = {
 
 let birthYear = person.birthDate.slice(7,11);
 
-//3. Use a for...in loop and if statement to console.log the value associated with the key birthDate if the birth year is an odd number
 
-let x;
-for (x in person) {
+for (birthDate in person) {
     if (birthYear % 2 != 0) {
   console.log(birthYear + ": This is an odd year.");
 }
@@ -27,7 +27,7 @@ for (x in person) {
     }
 }
 
-//regex//
+//Regex//
 let birthArray = person.birthDate.split(/, /);
 console.log(birthArray);
 let birthYear1=birthArray.pop();

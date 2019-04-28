@@ -1,3 +1,4 @@
+//do..while loop 1 through 1000
 let numbers = 1;
 do {
   numbers += 1;

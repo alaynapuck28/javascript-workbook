@@ -8,7 +8,7 @@ const rl = readline.createInterface({
 });
 
 let board = [];
-let solution = 'abcd';
+let solution = '';
 let letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
 
 function printBoard() {
@@ -29,39 +29,42 @@ function getRandomInt(min, max) {
 }
 
 function generateHint(solution, guess) {
- if (guess!=solution); 
-let solutionArray= solution.split("");
-let guessArray= guess.split("");
-let correctLetterLocations = 0;
-for (let i=0; i < guessArray.length; i++){
-if (solutionArray[i]== guessArray[i]){
-  correctLetterLocations+=1;
-  solutionArray[i]=null;
+  let solutionArray = solution.split('');
+  let guessArray = guess.split('');
+  let correctLetLoc = 0;
+  for (let i=0; i<solutionArray.length; i++) {
+    if (solutionArray[i] == guessArray[i]){
+    correctLetLoc = correctLetLoc + 1;
+    solutionArray[i] = null;
+   }
+  }
+  let correctLetters = 0;
+  for (let x=0; x<solutionArray.length; x++){
+   let targetIndex = guessArray.indexOf(solutionArray[x]);
+    if (targetIndex > -1) {
+        correctLetters = correctLetters + 1;
+        solutionArray[x] = null;
+        }
+    }
+    
+    return correctLetLoc+"-" + correctLetters;
 }
-}
-let correctLetter = 0;
-for (let i=0; i < solutionArray.length; i++){
-let targetIndex = guessArray.indexOf([solutionArray[i]]);
-
-if (targetIndex>-1){
-  correctLetter+=1;
-  solutionArray[i]=null;
-}
-}
-
-
-}
-
+ 
 
 function mastermind(guess) {
-  if (guess== solution){
-    return 'You guessed it!';
-   ;
+  solution = 'abcd';
+  if (board.length >= 10){
+    console.log(`You ran out of guesses! The solution was: ${solution}`);
+  } else {
+    if (guess != solution) {
+      let hints = generateHint(solution, guess);
+      board.push(hints)
+    } else {
+      console.log('You guessed it!');
+      return 'You guessed it!';
+    }
   }
-  solution = 'abcd'; // Comment this out to generate a random solution
-  // your code here
 }
-
 
 function getPrompt() {
   rl.question('guess: ', (guess) => {
@@ -84,19 +87,15 @@ if (typeof describe === 'function') {
       assert.equal(mastermind(solution), 'You guessed it!');
     });
   });
-
   describe('#generateHint()', () => {
     it('should generate hints', () => {
-      assert.equal(generateHint('abdc'), '2-2');
+      assert.equal(generateHint(solution, 'abdc'), '2-2');
     });
     it('should generate hints if solution has duplicates', () => {
-      assert.equal(generateHint('aabb'), '1-1');
+      assert.equal(generateHint(solution, 'aabb'), '1-1');
     });
-
   });
-
 } else {
-
   generateSolution();
   getPrompt();
 }

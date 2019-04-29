@@ -8,9 +8,9 @@ const rl = readline.createInterface({
 });
 
 let stacks = {
-  a: [],
+  a: [4, 3, 2, 1],
   b: [],
-  c: [4, 3, 2, 1]
+  c: []
 };
 
 function printStacks() {
@@ -21,53 +21,56 @@ function printStacks() {
 
 function movePiece(startStack, endStack) {
   // Moves the pieces from one stack to another
+  //.slice(-1,1) does not pass test but .pop does
   stacks[endStack].push(stacks[startStack].pop());
 }
 
-function isValid(startStack, endStack) {
-  // removing spacing and capitol letters
-  if (
-    startStack === "a" ||
-    startStack === "b" ||
-    (startStack === "c" && endStack === "a") ||
-    endStack === "b" ||
-    endStack === "c"
-  ) {
-    return true;
-  } else {
-    return false;
+  function isValid(startStack, endStack) {
+    if (
+      endStack === "a" ||
+      endStack === "b" ||
+      endStack === "c" && startStack === "a" ||
+      startStack === "b" ||
+      startStack === "c"
+    ) {
+      return true;
+    } else {
+      console.log("Please enter a valid input")
+      return false;
+    }
   }
-}
 
-function isLegal(startStack, endStack) {
-  // Legal moves
-  if (
-    stacks[startStack][stacks[startStack].length - 1] === undefined &&
-    stacks[startStack][stacks[endStack].length - 1] === undefined
-  ) {
-    console.log("Please pick a start stack with something in it");
-    return false;
-  } else if (
-    stacks[startStack][stacks[startStack].length - 1] <
-      stacks[endStack][stacks[endStack].length - 1] ||
-    stacks[endStack][stacks[endStack].length - 1] === undefined
-  ) {
-    return true;
-  } else {
-    console.log("Invalid move. Start is larger than end stack.");
-    return false;
-  }
-}
+  function isLegal(startStack, endStack) {
+    //first if both arrays return undefined for last item in array index then both are empty and should return false
+    //length -1 because zero index
+    if (
+      stacks[startStack][stacks[startStack].length - 1] === undefined &&
+      stacks[endStack][stacks[endStack].length - 1] === undefined
+    ) {
+      console.log("Both stacks were empty. Please choose a start stack with numbers");
+      return false;
 
-function checkForWin() {
-  // Checks for a win
-  if (stacks.b.length === 4 || stacks.c.length === 4) {
-    console.log("You win!!");
-    return true;
-  } else {
-    return false;
+    //if start stack has numbers and end stack is empty, then move is legal
+    } else if (
+      stacks[startStack][stacks[startStack].length - 1] <
+        stacks[endStack][stacks[endStack].length - 1] ||
+      stacks[endStack][stacks[endStack].length - 1] === undefined
+    ) {
+      return true;
+
+    //only other option left bigger number can't go on top of smaller number  
+    } else {
+      console.log('A bigger number cannot go on top of a smaller number')
+      return false;
+    }
   }
-}
+  function checkForWin() {
+    if (stacks.b.toString() == '4,3,2,1' || stacks.c.toString() == '4,3,2,1') {
+      // check to see if either stack b or c contains all 4 numbers
+      console.log('You Win!');
+      return true;
+    } else return false;
+  }
 
 function towersOfHanoi(startStack, endStack) {
   // Runs the game
@@ -99,23 +102,24 @@ if (typeof describe === "function") {
       towersOfHanoi("a", "b");
       assert.deepEqual(stacks, { a: [4, 3, 2], b: [1], c: [] });
     });
+  });
 
-  // New Test
+  // New Test 1
   describe("#isValid()", () => {
-    it("should allow an valid move", () => {
+    it("should allow a valid move", () => {
       isValid("a", "b");
       isValid("a", "c");
-      isValid("b", "c");
+      isValid("c", "a");
     });
   });
 
-  // New Test
+  // New Test 2
   describe("#isValid()", () => {
-    it("should not allow an invalid move", () => {
-      isValid("d", "e");
+    it("should not allow an invalid input", () => {
+      isValid("X", "yellow");
     });
   });
-  
+
 
   describe("#isLegal()", () => {
     it("should not allow an illegal move", () => {
@@ -125,7 +129,7 @@ if (typeof describe === "function") {
         c: []
       };
       assert.equal(isLegal("a", "b"), false);
-      // New Test
+      // New Test for legal move should return false
       stacks = {
         a: [4, 3, 2],
         b: [],
@@ -133,7 +137,7 @@ if (typeof describe === "function") {
       };
       assert.equal(isLegal("a", "c"), false);
     });
-    // New Test
+    // New Test for legal move should return false
     stacks = {
       a: [4, 3, 2, 1],
       b: [],
@@ -151,12 +155,22 @@ if (typeof describe === "function") {
   });
   describe("#checkForWin()", () => {
     it("should detect a win", () => {
-      stacks = { a: [], b: [4, 3, 2, 1], c: [] };
+    
+      stacks = { a: [], b: [4, 3, 2, 1], c: [] };  //column b win
       assert.equal(checkForWin(), true);
+
+
+      stacks = { a: [], b: [], c: [4, 3, 2, 1] }; //added: win in column c
+      assert.equal(checkForWin(), true);
+
       stacks = { a: [1], b: [4, 3, 2], c: [] };
+      assert.equal(checkForWin(), false);
+   
+      stacks = { a: [4, 3, 2, 1], b: [], c: [] }; // added: can't win in column a
       assert.equal(checkForWin(), false);
     });
   });
- else {
+} else {
   getPrompt();
 }
+

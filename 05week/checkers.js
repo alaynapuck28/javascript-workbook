@@ -75,23 +75,30 @@ createCheckers(){
     const whiteChecker = new Checker('white');
     const whiteRow = whitePosition[i][0];
     const whiteColumn = whitePosition[i][1];
+
     const blackChecker = new Checker('black');
     const blackRow = blackPosition[i][0];
     const blackColumn = blackPosition[i][1];
 
-    this.checkers.push(whiteChecker, blackChecker);
+   
 
     this.grid[whiteRow][whiteColumn]=whiteChecker;
     this.grid[blackRow][blackColumn]=blackChecker;
+    this.checkers.push(whiteChecker, blackChecker);
 
   }
 
 }
-selectCheckers(){
-
+selectCheckers(row, column){
+  return this.grid[row][column];
+ 
 }
 
-killCheckers(){
+killChecker(){
+  let checker = this.selectChecker(position[0], position[1])
+  let indexChecker = this.checkers.indexOf(checker)
+  this.checkers.splice(indexChecker, 1);
+  this.grid[position[0]][position[1]] = null;
 
 }
 }
@@ -114,6 +121,14 @@ class Game {
 
     this.board.grid[endRow][endColumn]=this.board.grid[startRow][startColumn];
     this.board.grid[startRow][startColumn]=null;
+
+    console.log(startColumn);
+
+    //not working yet...
+
+    if (Math.abs(endRow-startRow) === 2){
+      this.board.killChecker[(startRow + endRow)/2,(startColumn+endColumn)/2];
+    }
     
 
   }

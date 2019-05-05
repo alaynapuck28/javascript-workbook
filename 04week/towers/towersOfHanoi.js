@@ -1,7 +1,8 @@
-"use strict";
+'use strict';
 
-const assert = require("assert");
-const readline = require("readline");
+const assert = require('assert');
+const readline = require('readline');
+
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
@@ -18,6 +19,7 @@ function printStacks() {
   console.log("b: " + stacks.b);
   console.log("c: " + stacks.c);
 }
+
 
 function movePiece(startStack, endStack) {
   // Moves the pieces from one stack to another
@@ -82,6 +84,7 @@ function towersOfHanoi(startStack, endStack) {
       checkForWin();
     }
   }
+
 }
 
 function getPrompt() {
@@ -95,6 +98,7 @@ function getPrompt() {
 }
 
 // Tests
+
 
 if (typeof describe === "function") {
   describe("#towersOfHanoi()", () => {
@@ -123,7 +127,7 @@ if (typeof describe === "function") {
 
   describe("#isLegal()", () => {
     it("should not allow an illegal move", () => {
-      stacks = {
+    stacks = {
         a: [4, 3, 2],
         b: [1],
         c: []
@@ -145,6 +149,7 @@ if (typeof describe === "function") {
     };
     assert.equal(isLegal("b", "c"), false);
     it("should allow a legal move", () => {
+
       stacks = {
         a: [4, 3, 2, 1],
         b: [],
@@ -173,4 +178,3 @@ if (typeof describe === "function") {
 } else {
   getPrompt();
 }
-

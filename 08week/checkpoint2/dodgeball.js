@@ -1,13 +1,5 @@
 "use strict;";
 
-//******* not necessary  **********/
-// const assert = require('assert');
-// const readline = require('readline');
-// const rl = readline.createInterface({
-//   input: process.stdin,
-//   output: process.stdout
-// });
-
 const arrOfPeople = [
   {
     id: 2,
@@ -340,7 +332,7 @@ const joinBlueTeam = id => {
       
       if (typeof describe === 'function'){
         describe('Player', function(){
-          it('should throw a ball, dodge a ball, has paid dues, is healthy, has experience', function(){
+          it('can throw a ball, dodge a ball, has paid dues, is healthy, has experience', function(){
             let newPlayer = new Player('newPlayer.id', 'newPlayer.name', 'newPlayer.age', 'newPlayer.skillSet', 'newPlayer.placeBorn', true, true, true, true, 3);
             assert.equal(newPlayer.canThrowBall, true);
             assert.equal(newPlayer.canDodgeBall, true);
